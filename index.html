@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Etherion Institute</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Montserrat', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
+
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.5rem 2rem;
+  display: flex; align-items: center; gap: 0.6rem;
+  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 40%, rgba(0,0,0,0.7) 70%, transparent 100%);
+  padding-bottom: 3rem;
+}
+.topbar .icon-svg { width: 32px; height: 32px; }
+.topbar .icon-svg path { fill: #fff; }
+.topbar .text-svg { height: 16px; width: auto; }
+.topbar .text-svg path { fill: #fff; }
+
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 6rem 2rem 4rem;
+}
+h1 { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 800; line-height: 1.15; margin-bottom: 0.8rem; }
+.sub-headline {
+  font-size: clamp(1.1rem, 3vw, 1.8rem); font-weight: 500;
+  color: rgba(255,255,255,0.45); line-height: 1.4; max-width: 680px; margin-bottom: 2.5rem;
+}
+.plasma-bar {
+  width: min(92%, 900px); height: 200px; border-radius: 20px; overflow: hidden;
+}
+.plasma-bar canvas {
+  width: 100%; height: 100%; display: block; border-radius: 20px;
+  filter: blur(8px) saturate(1.3);
+  transform: scale(1.15);
+}
+.fade-section { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.fade-section.visible { opacity: 1; transform: translateY(0); }
+
+.mission {
+  padding: 4rem 2rem 0; text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+}
+.mission-text {
+  font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 700;
+  line-height: 1.5; max-width: 700px; margin-bottom: 1rem;
+}
+.mission-sub {
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem); font-weight: 600;
+  color: rgba(255,255,255,0.4); line-height: 1.5; max-width: 600px;
+  margin-bottom: 0;
+}
+.gradient-line {
+  width: min(60%, 500px); height: 1px; margin: 4rem 0 4rem;
+  background: linear-gradient(90deg, transparent, #9954AB, #E3E3E3, #9954AB, transparent);
+  background-size: 200% 100%;
+  animation: shimmer 4.3s ease-in-out infinite;
+}
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.mission-logo { display: flex; flex-direction: column; align-items: center; margin-bottom: 4rem; }
+.mission-logo .full-svg { width: 196px; height: auto; }
+
+.pillars { padding: 0 2rem 8rem; max-width: 1100px; margin: 0 auto; }
+.pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center; }
+.pillar-icon-wrap { display: flex; align-items: center; justify-content: center; height: 80px; margin-bottom: 1rem; }
+.pillar-title { font-size: 1.1rem; font-weight: 700; }
+.pillar-desc { font-size: 0.85rem; font-weight: 400; color: rgba(255,255,255,0.4); line-height: 1.6; margin-top: 0.5rem; }
+footer { border-top: 1px solid rgba(255,255,255,0.08); padding: 3rem 2rem; text-align: center; }
+.footer-cta {
+  display: inline-block; padding: 0.75rem 2rem;
+  border: 1px solid rgba(255,255,255,0.3); color: #fff;
+  font-family: inherit; font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.1em; text-decoration: none; transition: all 0.3s ease; margin-bottom: 2rem;
+}
+.footer-cta:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.5); }
+.footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.2); }
+@media (max-width: 700px) {
+  .pillars-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+  .topbar { padding: 1.2rem 1.5rem; }
+  .mission-logo .full-svg { width: 180px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <svg class="icon-svg" viewBox="0 0 106.6 108.4" xmlns="http://www.w3.org/2000/svg">
+    <path d="M86.4,13.2c4.4,3.9,8,8.2,9.3,13.8,1.5,6.2,0,11.8-3.5,16.9-3.3,4.7-7.6,8.2-12.5,11-7.2,4-14.9,6.5-22.6,9-5.4,1.7-10.7,3.1-15.9,5.4-4.3,1.9-8.4,4.1-11.6,7.6-1.7,2-2.8,4.2-2.7,6.9.2,3.2,2.1,5.4,4.4,7.3,3.7,3,8.2,4.4,12.9,5.1,7.2,1.2,14.2.4,21-2.2,7.4-2.8,13.6-7.3,18.7-13.3,7.9-9.2,12.3-20,14.8-31.7.8-4.3,1.5-8.7,1.6-13.1,0-1.2.2-2.3.3-3.6.5.2.6.6.8,1,2.1,5.3,3.6,10.8,3.9,16.5,1.1,20.9-7.3,37.1-24.8,48.5-6.5,4.3-14,6.7-21.8,7.4-14.8,1.5-27.8-2.5-39-12.1-9.7-8.4-15.8-19-17.7-31.7C-.7,45.4,4.3,30.6,15.8,17.9,23.8,9.1,34,3.7,45.9,2.1c15.1-2.1,28.6,1.8,40.6,11.2M83.2,32.8c.6-2.2.6-4.3,0-6.5-1.5-4.7-4.8-7.8-9-10.2-7.8-4.7-16.3-6.1-25.3-4.7-10.5,1.7-19.2,6.7-26,14.6-8.4,9.8-12.5,21.3-11.7,34.4.3,5.1,1.6,10,3.8,14.6.2.5.4,1.2,1.2,1.5,1.1-1.8,2-3.6,3.4-5,4.3-4.6,9.7-7.5,15.5-9.8,7.9-3.2,16.1-5.6,24-9,6.3-2.6,12.4-5.8,17.6-10.4,2.8-2.6,5.4-5.4,6.5-9.5h0Z"/>
+  </svg>
+  <svg class="text-svg" viewBox="0 0 738.722 136.284" xmlns="http://www.w3.org/2000/svg">
+    <path d="M88.011,103.819v11.497H20.877V22.809h65.284v11.498h-52.069v28.413h46.386v11.232h-46.386v29.867h53.919Z"/>
+    <path d="M127.79,34.307h-31.717v-11.498h76.517v11.498h-31.717v81.01h-13.083V34.307Z"/>
+    <path d="M266.549,22.809v92.508h-13.215v-41.232h-53.126v41.232h-13.215V22.809h13.215v39.778h53.126V22.809h13.215Z"/>
+    <path d="M361.435,103.819v11.497h-67.134V22.809h65.284v11.498h-52.069v28.413h46.386v11.232h-46.386v29.867h53.918Z"/>
+    <path d="M444.691,115.316l-19.955-28.413c-2.467.178-4.406.265-5.814.265h-22.862v28.148h-13.216V22.809h36.078c11.98,0,21.409,2.864,28.281,8.59,6.872,5.729,10.308,13.612,10.308,23.656,0,7.136-1.764,13.215-5.286,18.237-3.524,5.021-8.547,8.679-15.065,10.969l21.938,31.056h-14.405ZM437.688,70.517c4.404-3.611,6.607-8.766,6.607-15.462s-2.203-11.828-6.607-15.396c-4.406-3.568-10.793-5.352-19.162-5.352h-22.466v41.628h22.466c8.369,0,14.756-1.805,19.162-5.418Z"/>
+    <path d="M478.918,22.809h13.216v92.508h-13.216V22.809Z"/>
+    <path d="M536.405,110.229c-7.489-4.097-13.37-9.757-17.643-16.981-4.274-7.224-6.409-15.285-6.409-24.185s2.135-16.959,6.409-24.184c4.272-7.224,10.153-12.886,17.643-16.982,7.487-4.097,15.901-6.145,25.241-6.145,9.251,0,17.62,2.048,25.109,6.145,7.487,4.097,13.348,9.736,17.576,16.916,4.229,7.182,6.344,15.264,6.344,24.25s-2.115,17.07-6.344,24.25c-4.229,7.182-10.089,12.819-17.576,16.916-7.489,4.097-15.858,6.146-25.109,6.146-9.34,0-17.754-2.049-25.241-6.146ZM579.95,99.986c5.418-3.083,9.69-7.334,12.818-12.753,3.126-5.418,4.691-11.475,4.691-18.171s-1.565-12.753-4.691-18.171c-3.128-5.418-7.4-9.668-12.818-12.753-5.419-3.083-11.521-4.625-18.304-4.625s-12.931,1.542-18.436,4.625c-5.507,3.085-9.825,7.335-12.951,12.753-3.128,5.418-4.691,11.477-4.691,18.171s1.563,12.753,4.691,18.171c3.126,5.419,7.444,9.67,12.951,12.753,5.505,3.085,11.65,4.626,18.436,4.626s12.885-1.541,18.304-4.626Z"/>
+    <path d="M710.45,22.809v92.508h-10.837l-55.504-68.984v68.984h-13.216V22.809h10.837l55.504,68.984V22.809h13.216Z"/>
+  </svg>
+</nav>
+
+<section class="hero">
+  <h1>Where Geometry Meets the Future.</h1>
+  <p class="sub-headline">Advanced research in geometry, plasma stability, and the fundamental laws of nature, accelerated by artificial intelligence.</p>
+  <div class="plasma-bar"><canvas id="plasma"></canvas></div>
+</section>
+
+<section class="mission fade-section">
+  <p class="mission-text">The Etherion Institute is an independent research body advancing breakthroughs in plasma stability, unified field theory, and the mathematics of fundamental forces.</p>
+  <p class="mission-sub">Our mission: to bridge pure theory with practical engineering solutions for the 21st century.</p>
+  <div class="gradient-line"></div>
+  <div class="mission-logo">
+    <svg class="full-svg" viewBox="0 0 110 145" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(23 0) scale(0.6)" fill="#fff">
+        <path d="M86.4,13.2c4.4,3.9,8,8.2,9.3,13.8,1.5,6.2,0,11.8-3.5,16.9-3.3,4.7-7.6,8.2-12.5,11-7.2,4-14.9,6.5-22.6,9-5.4,1.7-10.7,3.1-15.9,5.4-4.3,1.9-8.4,4.1-11.6,7.6-1.7,2-2.8,4.2-2.7,6.9.2,3.2,2.1,5.4,4.4,7.3,3.7,3,8.2,4.4,12.9,5.1,7.2,1.2,14.2.4,21-2.2,7.4-2.8,13.6-7.3,18.7-13.3,7.9-9.2,12.3-20,14.8-31.7.8-4.3,1.5-8.7,1.6-13.1,0-1.2.2-2.3.3-3.6.5.2.6.6.8,1,2.1,5.3,3.6,10.8,3.9,16.5,1.1,20.9-7.3,37.1-24.8,48.5-6.5,4.3-14,6.7-21.8,7.4-14.8,1.5-27.8-2.5-39-12.1-9.7-8.4-15.8-19-17.7-31.7C-.7,45.4,4.3,30.6,15.8,17.9,23.8,9.1,34,3.7,45.9,2.1c15.1-2.1,28.6,1.8,40.6,11.2M83.2,32.8c.6-2.2.6-4.3,0-6.5-1.5-4.7-4.8-7.8-9-10.2-7.8-4.7-16.3-6.1-25.3-4.7-10.5,1.7-19.2,6.7-26,14.6-8.4,9.8-12.5,21.3-11.7,34.4.3,5.1,1.6,10,3.8,14.6.2.5.4,1.2,1.2,1.5,1.1-1.8,2-3.6,3.4-5,4.3-4.6,9.7-7.5,15.5-9.8,7.9-3.2,16.1-5.6,24-9,6.3-2.6,12.4-5.8,17.6-10.4,2.8-2.6,5.4-5.4,6.5-9.5h0Z"/>
+      </g>
+      <g transform="translate(0 78) scale(0.149)" fill="#fff">
+        <path d="M88.011,103.819v11.497H20.877V22.809h65.284v11.498h-52.069v28.413h46.386v11.232h-46.386v29.867h53.919Z"/>
+        <path d="M127.79,34.307h-31.717v-11.498h76.517v11.498h-31.717v81.01h-13.083V34.307Z"/>
+        <path d="M266.549,22.809v92.508h-13.215v-41.232h-53.126v41.232h-13.215V22.809h13.215v39.778h53.126V22.809h13.215Z"/>
+        <path d="M361.435,103.819v11.497h-67.134V22.809h65.284v11.498h-52.069v28.413h46.386v11.232h-46.386v29.867h53.918Z"/>
+        <path d="M444.691,115.316l-19.955-28.413c-2.467.178-4.406.265-5.814.265h-22.862v28.148h-13.216V22.809h36.078c11.98,0,21.409,2.864,28.281,8.59,6.872,5.729,10.308,13.612,10.308,23.656,0,7.136-1.764,13.215-5.286,18.237-3.524,5.021-8.547,8.679-15.065,10.969l21.938,31.056h-14.405ZM437.688,70.517c4.404-3.611,6.607-8.766,6.607-15.462s-2.203-11.828-6.607-15.396c-4.406-3.568-10.793-5.352-19.162-5.352h-22.466v41.628h22.466c8.369,0,14.756-1.805,19.162-5.418Z"/>
+        <path d="M478.918,22.809h13.216v92.508h-13.216V22.809Z"/>
+        <path d="M536.405,110.229c-7.489-4.097-13.37-9.757-17.643-16.981-4.274-7.224-6.409-15.285-6.409-24.185s2.135-16.959,6.409-24.184c4.272-7.224,10.153-12.886,17.643-16.982,7.487-4.097,15.901-6.145,25.241-6.145,9.251,0,17.62,2.048,25.109,6.145,7.487,4.097,13.348,9.736,17.576,16.916,4.229,7.182,6.344,15.264,6.344,24.25s-2.115,17.07-6.344,24.25c-4.229,7.182-10.089,12.819-17.576,16.916-7.489,4.097-15.858,6.146-25.109,6.146-9.34,0-17.754-2.049-25.241-6.146ZM579.95,99.986c5.418-3.083,9.69-7.334,12.818-12.753,3.126-5.418,4.691-11.475,4.691-18.171s-1.565-12.753-4.691-18.171c-3.128-5.418-7.4-9.668-12.818-12.753-5.419-3.083-11.521-4.625-18.304-4.625s-12.931,1.542-18.436,4.625c-5.507,3.085-9.825,7.335-12.951,12.753-3.128,5.418-4.691,11.477-4.691,18.171s1.563,12.753,4.691,18.171c3.126,5.419,7.444,9.67,12.951,12.753,5.505,3.085,11.65,4.626,18.436,4.626s12.885-1.541,18.304-4.626Z"/>
+        <path d="M710.45,22.809v92.508h-10.837l-55.504-68.984v68.984h-13.216V22.809h10.837l55.504,68.984V22.809h13.216Z"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<section class="pillars fade-section">
+  <div class="pillars-grid">
+    <div>
+      <div class="pillar-icon-wrap">
+        <svg width="56" height="56" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="18" stroke="rgba(153,84,171,0.5)" stroke-width="1"/>
+          <circle cx="24" cy="24" r="10" stroke="rgba(153,84,171,0.3)" stroke-width="0.8"/>
+          <circle cx="24" cy="24" r="3" fill="rgba(153,84,171,0.5)"/>
+          <line x1="24" y1="6" x2="24" y2="42" stroke="rgba(153,84,171,0.15)" stroke-width="0.5"/>
+          <line x1="6" y1="24" x2="42" y2="24" stroke="rgba(153,84,171,0.15)" stroke-width="0.5"/>
+          <circle cx="24" cy="6" r="1.5" fill="rgba(153,84,171,0.4)"/>
+          <circle cx="24" cy="42" r="1.5" fill="rgba(153,84,171,0.4)"/>
+          <circle cx="6" cy="24" r="1.5" fill="rgba(153,84,171,0.4)"/>
+          <circle cx="42" cy="24" r="1.5" fill="rgba(153,84,171,0.4)"/>
+        </svg>
+      </div>
+      <div class="pillar-title">Research.</div>
+      <div class="pillar-desc">Developing original solutions to physics' most challenging open problems.</div>
+    </div>
+    <div>
+      <div class="pillar-icon-wrap">
+        <svg width="56" height="56" viewBox="0 0 48 48" fill="none">
+          <path d="M24 6 L42 18 L42 34 L24 46 L6 34 L6 18 Z" stroke="rgba(153,84,171,0.5)" stroke-width="1" fill="none"/>
+          <path d="M24 14 L34 20 L34 32 L24 38 L14 32 L14 20 Z" stroke="rgba(153,84,171,0.3)" stroke-width="0.8" fill="none"/>
+          <circle cx="24" cy="26" r="3" fill="rgba(153,84,171,0.5)"/>
+        </svg>
+      </div>
+      <div class="pillar-title">Innovation.</div>
+      <div class="pillar-desc">Transforming mathematical frameworks into technologies with global impact.</div>
+    </div>
+    <div>
+      <div class="pillar-icon-wrap">
+        <svg width="56" height="56" viewBox="0 0 48 48" fill="none">
+          <rect x="8" y="8" width="32" height="32" rx="2" stroke="rgba(153,84,171,0.5)" stroke-width="1" fill="none"/>
+          <rect x="14" y="14" width="20" height="20" rx="1" stroke="rgba(153,84,171,0.3)" stroke-width="0.8" fill="none"/>
+          <path d="M20 24 L24 19 L28 24 L24 29 Z" fill="rgba(153,84,171,0.5)"/>
+          <line x1="8" y1="8" x2="14" y2="14" stroke="rgba(153,84,171,0.2)" stroke-width="0.5"/>
+          <line x1="40" y1="8" x2="34" y2="14" stroke="rgba(153,84,171,0.2)" stroke-width="0.5"/>
+          <line x1="8" y1="40" x2="14" y2="34" stroke="rgba(153,84,171,0.2)" stroke-width="0.5"/>
+          <line x1="40" y1="40" x2="34" y2="34" stroke="rgba(153,84,171,0.2)" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="pillar-title">Preservation.</div>
+      <div class="pillar-desc">Safeguarding scientific integrity and ensuring open access to critical discoveries.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="fade-section">
+  <a href="mailto:contact@etherioninstitute.com" class="footer-cta">Get in Touch →</a>
+  <p class="footer-copy">© 2026 Etherion Institute. All rights reserved.</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.fade-section').forEach(el => obs.observe(el));
+
+const canvas = document.getElementById('plasma');
+const gl = canvas.getContext('webgl');
+let w, h;
+function resize() {
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width * 2; canvas.height = rect.height * 2;
+  w = canvas.width; h = canvas.height;
+  if (gl) gl.viewport(0, 0, w, h);
+}
+resize(); window.addEventListener('resize', resize);
+const vs = `attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}`;
+const fs = `
+precision highp float;
+uniform float t;
+uniform vec2 res;
+vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}
+vec2 mod289(vec2 x){return x-floor(x*(1.0/289.0))*289.0;}
+vec3 permute(vec3 x){return mod289(((x*34.0)+1.0)*x);}
+float snoise(vec2 v){
+  const vec4 C=vec4(0.211324865405187,0.366025403784439,-0.577350269189626,0.024390243902439);
+  vec2 i=floor(v+dot(v,C.yy));vec2 x0=v-i+dot(i,C.xx);
+  vec2 i1=(x0.x>x0.y)?vec2(1,0):vec2(0,1);
+  vec4 x12=x0.xyxy+C.xxzz;x12.xy-=i1;i=mod289(i);
+  vec3 p=permute(permute(i.y+vec3(0,i1.y,1.0))+i.x+vec3(0,i1.x,1.0));
+  vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.0);
+  m=m*m;m=m*m;
+  vec3 x=2.0*fract(p*C.www)-1.0;vec3 h=abs(x)-0.5;
+  vec3 ox=floor(x+0.5);vec3 a0=x-ox;
+  m*=1.79284291400159-0.85373472095314*(a0*a0+h*h);
+  vec3 g;g.x=a0.x*x0.x+h.x*x0.y;g.yz=a0.yz*x12.xz+h.yz*x12.yw;
+  return 130.0*dot(m,g);
+}
+void main(){
+  vec2 uv=gl_FragCoord.xy/res;
+  float n1=snoise(uv*1.8+vec2(t*0.2,t*0.15));
+  float n2=snoise(uv*2.8+vec2(-t*0.14,t*0.24)+7.3);
+  float n3=snoise(uv*4.2+vec2(t*0.1,-t*0.18)+13.7);
+  float n4=snoise(uv*1.2+vec2(t*0.28,t*0.08)+21.1);
+  float n5=snoise(uv*3.5+vec2(-t*0.17,t*0.13)+37.9);
+  float n6=snoise(uv*5.5+vec2(t*0.07,-t*0.21)+53.2);
+  float n7=snoise(uv*0.8+vec2(t*0.11,t*0.3)+71.4);
+  float v=(n1*0.28+n2*0.22+n3*0.14+n4*0.13+n5*0.1+n6*0.07+n7*0.06);
+  v=v*0.5+0.5;
+  v=smoothstep(0.08,0.92,v);
+  v=pow(v,0.8);
+  vec3 c1=vec3(0.078,0.012,0.078);
+  vec3 c2=vec3(0.6,0.33,0.67);
+  vec3 c3=vec3(0.89,0.89,0.89);
+  vec3 col;
+  if(v<0.4){col=mix(c1,c2,v/0.4);}
+  else if(v<0.65){col=mix(c2,c3,(v-0.4)/0.25);}
+  else{col=mix(c3,c2,(v-0.65)/0.35);}
+  gl_FragColor=vec4(col,1.0);
+}`;
+function compile(src,type){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;}
+const prog=gl.createProgram();
+gl.attachShader(prog,compile(vs,gl.VERTEX_SHADER));
+gl.attachShader(prog,compile(fs,gl.FRAGMENT_SHADER));
+gl.linkProgram(prog);gl.useProgram(prog);
+const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+const loc=gl.getAttribLocation(prog,'p');gl.enableVertexAttribArray(loc);
+gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+const tLoc=gl.getUniformLocation(prog,'t');
+const rLoc=gl.getUniformLocation(prog,'res');
+let time=Math.random()*100;
+function draw(){
+  time+=0.01;
+  gl.uniform1f(tLoc,time);gl.uniform2f(rLoc,w,h);
+  gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
